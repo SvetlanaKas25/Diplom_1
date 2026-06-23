@@ -1,2 +1,11 @@
 # Игнорирование папки .venv
 .venv/
+
+# Игнорирование папки __pycache__
+__pycache__/
+
+# Игнорирование папки .pytest_cache/
+.pytest_cache/
+
+# Игнорирование папки __pycache__ в папке praktikum
+.praktikum/__pycache__/

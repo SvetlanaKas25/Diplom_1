@@ -31,3 +31,16 @@ class TestBurger:
         assert len(burger.ingredients) == 1
         assert burger.ingredients[0] == mock_ingredient
 
+
+   # Тест на добавление двух ингредиентов
+    def test_add_two_ingredients(self):
+        burger = Burger()
+        
+        mock_filling = Mock()
+        mock_sauce = Mock()
+                
+        burger.add_ingredient(mock_sauce)
+        burger.add_ingredient(mock_filling)
+        
+        assert len(burger.ingredients) == 2
+

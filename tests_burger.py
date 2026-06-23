@@ -81,3 +81,30 @@ class TestBurger:
         
         assert actual_names == expected_names
 
+
+    # Тест на получение цены бургера
+    @pytest.mark.parametrize("bun_price, filling_price, sauce_price", [
+        (50, 100, 300), # булочки и два ингредиента
+        (20, 50, 0),  # булочки и один ингредиент
+        (40, 0, 0),  # только булочки
+        (0, 0, 0)   # без булочек и без ингредиентов
+        ])
+    def test_get_price(self, bun_price, filling_price, sauce_price):
+        burger = Burger()
+       
+        mock_bun = Mock()
+        mock_bun.get_price.return_value = bun_price
+               
+        mock_filling = Mock()
+        mock_filling.get_price.return_value = filling_price
+        
+        mock_sauce = Mock()
+        mock_sauce.get_price.return_value = sauce_price
+        
+        burger.set_buns(mock_bun)
+        burger.add_ingredient(mock_sauce)
+        burger.add_ingredient(mock_filling)
+
+        expected_price = bun_price * 2 + filling_price + sauce_price
+        assert burger.get_price() == expected_price
+

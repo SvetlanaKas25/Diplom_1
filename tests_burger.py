@@ -44,3 +44,14 @@ class TestBurger:
         
         assert len(burger.ingredients) == 2
 
+
+    # Тест на удаление ингредиента 
+    def test_remove_ingredient(self):
+        burger = Burger()
+        mock_ingredient = Mock()
+        burger.add_ingredient(mock_ingredient)
+        burger.remove_ingredient(0)
+        
+        assert len(burger.ingredients) == 0
+        assert mock_ingredient not in burger.ingredients
+

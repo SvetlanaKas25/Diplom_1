@@ -108,3 +108,40 @@ class TestBurger:
         expected_price = bun_price * 2 + filling_price + sauce_price
         assert burger.get_price() == expected_price
 
+
+    # Тест на получение чека на бургер
+    def test_get_receipt_with_bun_and_ingredients(self):
+        burger = Burger()
+
+        mock_bun = Mock()
+        mock_bun.get_name.return_value = "black bun"
+        mock_bun.get_price.return_value = 100.0
+
+        mock_filling = Mock()
+        mock_filling.get_name.return_value = "cutlet"
+        mock_filling.get_type.return_value = "FILLING"
+        mock_filling.get_price.return_value = 100.0
+
+        mock_sauce = Mock()
+        mock_sauce.get_name.return_value = "chili sauce"
+        mock_sauce.get_type.return_value = "SAUCE"
+        mock_sauce.get_price.return_value = 300.0
+
+        burger.set_buns(mock_bun)
+        burger.add_ingredient(mock_filling)
+        burger.add_ingredient(mock_sauce)
+
+        expected_price = 600  # Расчёт: 100*2 + 100 + 300 = 600
+        burger.get_price = Mock(return_value=expected_price)
+
+        receipt = burger.get_receipt()
+        
+        expected_receipt = (
+            '(==== black bun ====)',
+            '= filling cutlet =',
+            '= sauce chili sauce =',
+            '(==== black bun ====)\n',
+            'Price: 600'
+        )
+
+        assert receipt == '\n'.join(expected_receipt)

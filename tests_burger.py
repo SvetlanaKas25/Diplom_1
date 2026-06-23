@@ -16,3 +16,18 @@ class TestBurger:
         
         assert burger.bun == mock_bun
 
+
+    # Тест на добавление одного ингредиента
+    def test_add_one_ingredient(self):
+        burger = Burger()
+        
+        mock_ingredient = Mock()
+        mock_ingredient.get_name.return_value = 'cutlet'
+        mock_ingredient.get_price.return_value = 100
+        mock_ingredient.get_type.return_value = 'FILLING'
+        
+        burger.add_ingredient(mock_ingredient)
+        
+        assert len(burger.ingredients) == 1
+        assert burger.ingredients[0] == mock_ingredient
+

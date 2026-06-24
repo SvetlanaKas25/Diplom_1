@@ -9,3 +9,6 @@ __pycache__/
 
 # Игнорирование папки __pycache__ в папке praktikum
 .praktikum/__pycache__/
+
+# Игнорирование папки .coverage
+.coverage
